@@ -2,6 +2,61 @@
 Changelog for package mavros
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.31.0 (2019-06-07)
+-------------------
+* readme: fix udp-pb formatting
+* launch config: landing_target: fix and improve parameter list
+* remove duplicated landing_target parameters
+* enum_to_string: simplify landing_target_type_from_str
+* enum_to_string: update enumerations and checksum
+* extras: landing target: improve usability and flexibility
+* remove landing_target from blacklist
+* update to use pymavlink generator
+* px4_config: landing_target: minor correction
+* mav_frame: add frames of reference to wiki page; reference them on config
+* landing_target: removed child_frame_id
+* landing_target: minor code tweak/restructure
+* landing_target: uncrustify code
+* landing_target: updated to TF2 and Eigen math
+* landing_target: adapted to latest master code
+* landing_target: added timestamp and target size fields [!Won't compile unless a new mavlink release!]
+* landing_target: first commit
+* Switch to double-reflections instead of axes-reassignments
+* specialize transform_frame_ned_enu and transform_frame_enu_ned for type
+  Vector3d such that input vectors containing a NAN can be correctly transformed
+* Update README.md
+  update misspelling
+* Contributors: Julian Kent, Martina Rivizzigno, Shingo Matsuura, TSC21, Vladimir Ermakov
+
+0.30.0 (2019-05-20)
+-------------------
+* Filter heartbeats by component id as well
+  This addresses `#1107 <https://github.com/mavlink/mavros/issues/1107>`_ and `#1227 <https://github.com/mavlink/mavros/issues/1227>`_, by filtering incoming heartbeats
+  by component ids before publishing the state.
+* mavros/src/plugins/command.cpp: log if command's wait ack timeout (`#1222 <https://github.com/mavlink/mavros/issues/1222>`_)
+  * mavros/src/plugins/command.cpp: log if command's wait ack timeout
+  * mavros/src/plugins/command.cpp: log timeout in wait_ack_for
+* local_position fix `#1220 <https://github.com/mavlink/mavros/issues/1220>`_: initialize flags
+* plugin waypoint: fix spelling
+* Fix leading space before setpoint_raw
+  This causes an error when running `roslaunch`:
+  ```
+  error loading <rosparam> tag:
+  file /opt/ros/kinetic/share/mavros/launch/apm_config.yaml contains invalid YAML:
+  while parsing a block mapping
+  in "<string>", line 4, column 1:
+  startup_px4_usb_quirk: false
+  ^
+  expected <block end>, but found '<block mapping start>'
+  in "<string>", line 103, column 2:
+  setpoint_raw:
+  ^
+  XML is <rosparam command="load" file="$(arg config_yaml)"/>
+  The traceback for the exception was written to the log file
+  ```
+* global_position.cpp: spell in comment
+* Contributors: Dr.-Ing. Amilcar do Carmo Lucas, Josh Veitch-Michaelis, Nico van Duijn, Sergey Zobov, Vladimir Ermakov
+
 0.29.2 (2019-03-06)
 -------------------
 

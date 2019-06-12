@@ -99,8 +99,8 @@ setpoint_attitude:
     child_frame_id: "target_attitude"
     rate_limit: 50.0
     
- # setpoint_raw
- setpoint_raw:
+# setpoint_raw
+setpoint_raw:
   thrust_scaling: 1.0       # specify thrust scaling (normalized, 0 to 1) for thrust (like PX4)
 
 # setpoint_position
@@ -174,6 +174,25 @@ fake_gps:
     child_frame_id: "fix" # TF child_frame_id
     rate_limit: 10.0      # TF rate
   gps_rate: 5.0           # GPS data publishing rate
+
+# landing_target
+landing_target:
+  listen_lt: false
+  mav_frame: "LOCAL_NED"
+  land_target_type: "VISION_FIDUCIAL"
+  image:
+    width: 640            # [pixels]
+    height: 480
+  camera:
+    fov_x: 2.0071286398   # default: 115 [degrees]
+    fov_y: 2.0071286398
+  tf:
+    send: true
+    listen: false
+    frame_id: "landing_target"
+    child_frame_id: "camera_center"
+    rate_limit: 10.0
+  target_size: {x:  0.3, y:  0.3}
 
 # mocap_pose_estimate
 mocap:
