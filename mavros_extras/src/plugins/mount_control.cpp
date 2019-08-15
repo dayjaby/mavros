@@ -63,11 +63,12 @@ private:
 	 * @brief Publish the mount orientation
 	 *
 	 * Message specification: https://mavlink.io/en/messages/common.html#MOUNT_ORIENTATION
-	 * @param o	received MountOrientation msg
+	 * @param msg   the mavlink message
+	 * @param mo	received MountOrientation msg
 	 */
-	void handle_mount_orientation(const mavlink::mavlink_message_t *msg, mavlink::common::msg::MOUNT_ORIENTATION &o)
+	void handle_mount_orientation(const mavlink::mavlink_message_t *msg, mavlink::common::msg::MOUNT_ORIENTATION &mo)
 	{
-		auto q = ftf::quaternion_from_rpy(Eigen::Vector3d(o.roll, o.pitch, o.yaw) * M_PI / 180.0);
+		auto q = ftf::quaternion_from_rpy(Eigen::Vector3d(mo.roll, mo.pitch, mo.yaw) * M_PI / 180.0);
 		geometry_msgs::Quaternion quaternion_msg;
 		tf::quaternionEigenToMsg(q, quaternion_msg);
 		mount_orientation_pub.publish(quaternion_msg);
