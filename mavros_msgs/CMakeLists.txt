@@ -16,6 +16,7 @@ add_message_files(
   CamIMUStamp.msg
   CommandCode.msg
   CompanionProcessStatus.msg
+  OnboardComputerStatus.msg
   DebugValue.msg
   ExtendedState.msg
   FileEntry.msg
@@ -31,6 +32,7 @@ add_message_files(
   LogEntry.msg
   ManualControl.msg
   Mavlink.msg
+  MountControl.msg
   OpticalFlowRad.msg
   OverrideRCIn.msg
   Param.msg
@@ -64,6 +66,7 @@ add_service_files(
   CommandTOL.srv
   CommandTriggerControl.srv
   CommandTriggerInterval.srv
+  CommandVtolTransition.srv
   FileChecksum.srv
   FileClose.srv
   FileList.srv
@@ -78,6 +81,7 @@ add_service_files(
   LogRequestData.srv
   LogRequestEnd.srv
   LogRequestList.srv
+  MountConfigure.srv
   MessageInterval.srv
   ParamGet.srv
   ParamPull.srv

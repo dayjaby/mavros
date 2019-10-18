@@ -2,6 +2,40 @@
 Changelog for package mavros_extras
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.33.0 (2019-10-10)
+-------------------
+* CleanUp
+* Odom Plugin, enforcing ROS convetion, less options but clearer to use
+* Fix service namespace with new nodehandle
+* Add mount configure service
+* use header.stamp to fill mavlink msg field time_usec
+* use cog for copy
+* adapt message and plugin after mavlink message merge
+* rename message and adjust fields
+* add component id to mavros message to distinguish ROS msgs from different systems
+* component_status message and plugin draft
+* Contributors: Jaeyoung-Lim, baumanta, kamilritz
+
+0.32.2 (2019-09-09)
+-------------------
+* clean up
+* fix obstacle distance plugin
+* Contributors: baumanta
+
+0.32.1 (2019-08-08)
+-------------------
+
+0.32.0 (2019-07-06)
+-------------------
+* use direclty radians in yaml files
+* add mav_cmd associated with each point in trajectory plugin
+* Fix typo
+* Address comments
+* Send messages from callback
+* Use MountControl Msg
+* Add mount control class template
+* Contributors: Jaeyoung-Lim, Martina Rivizzigno
+
 0.31.0 (2019-06-07)
 -------------------
 * landing_target: fix landing target pose input topic naming
