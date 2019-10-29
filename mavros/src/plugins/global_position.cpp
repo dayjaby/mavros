@@ -160,8 +160,8 @@ private:
 	{
 		auto fix = boost::make_shared<sensor_msgs::NavSatFix>();
 		auto sat_cnt = boost::make_shared<std_msgs::UInt32>();
-		sat_cnt->data = raw_gps.satellites_visible;
-		raw_sat_pub.publish(sat_cnt);
+    sat_cnt->data = raw_gps.satellites_visible;
+    raw_sat_pub.publish(raw_cnt);
 
 		fix->header = m_uas->synchronized_header(child_frame_id, raw_gps.time_usec);
 
