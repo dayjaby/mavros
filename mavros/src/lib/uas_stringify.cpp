@@ -126,10 +126,11 @@ static const cmode_map px4_cmode_map{{
 	{ px4::define_mode(px4::custom_mode::MAIN_MODE_MANUAL),           "MANUAL" },
 	{ px4::define_mode(px4::custom_mode::MAIN_MODE_ACRO),             "ACRO" },
 	{ px4::define_mode(px4::custom_mode::MAIN_MODE_ALTCTL),           "ALTCTL" },
-	{ px4::define_mode(px4::custom_mode::MAIN_MODE_POSCTL),           "POSCTL" },
 	{ px4::define_mode(px4::custom_mode::MAIN_MODE_OFFBOARD),         "OFFBOARD" },
 	{ px4::define_mode(px4::custom_mode::MAIN_MODE_STABILIZED),       "STABILIZED" },
 	{ px4::define_mode(px4::custom_mode::MAIN_MODE_RATTITUDE),        "RATTITUDE" },
+	{ px4::define_mode_posctl(px4::custom_mode::SUB_MODE_POSCTL_NONE),      "POSCTL" },
+	{ px4::define_mode_posctl(px4::custom_mode::SUB_MODE_POSCTL_ORBIT),     "ORBIT" },
 	{ px4::define_mode_auto(px4::custom_mode::SUB_MODE_AUTO_MISSION), "AUTO.MISSION" },
 	{ px4::define_mode_auto(px4::custom_mode::SUB_MODE_AUTO_LOITER),  "AUTO.LOITER" },
 	{ px4::define_mode_auto(px4::custom_mode::SUB_MODE_AUTO_RTL),     "AUTO.RTL" },
@@ -164,7 +165,8 @@ static inline std::string str_mode_px4(uint32_t custom_mode_int)
 
 	// clear fields
 	custom_mode.reserved = 0;
-	if (custom_mode.main_mode != px4::custom_mode::MAIN_MODE_AUTO) {
+	if (custom_mode.main_mode != px4::custom_mode::MAIN_MODE_AUTO
+		&& custom_mode.main_mode != px4::custom_mode::MAIN_MODE_POSCTL) {
 		ROS_WARN_COND_NAMED(custom_mode.sub_mode != 0, "uas", "PX4: Unknown sub-mode %d.%d",
 			custom_mode.main_mode, custom_mode.sub_mode);
 		custom_mode.sub_mode = 0;

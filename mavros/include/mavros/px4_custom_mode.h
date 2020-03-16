@@ -76,6 +76,11 @@ union custom_mode {
 		SUB_MODE_AUTO_PRECLAND
 	};
 
+	enum SUB_MODE_POSCTL : uint8_t {
+		SUB_MODE_POSCTL_NONE = 0,
+		SUB_MODE_POSCTL_ORBIT
+	};
+
 	struct {
 		uint16_t reserved;
 		uint8_t main_mode;
@@ -118,5 +123,17 @@ constexpr uint32_t define_mode(enum custom_mode::MAIN_MODE mm, uint8_t sm = 0) {
  */
 constexpr uint32_t define_mode_auto(enum custom_mode::SUB_MODE_AUTO sm) {
 	return define_mode(custom_mode::MAIN_MODE_AUTO, sm);
+}
+
+/**
+ * @brief helper function to define posctl mode as uint32_t constant
+ *
+ * Same as @a define_mode(custom_mode::MAIN_MODE_POSCTL, sm)
+ *
+ * @param sm auto sub mode
+ * @return uint32_t representation
+ */
+constexpr uint32_t define_mode_posctl(enum custom_mode::SUB_MODE_POSCTL sm) {
+	return define_mode(custom_mode::MAIN_MODE_POSCTL, sm);
 }
 };	// namespace px4
