@@ -87,6 +87,7 @@ public:
 		temp_imu_pub = imu_nh.advertise<sensor_msgs::Temperature>("temperature_imu", 10);
 		temp_baro_pub = imu_nh.advertise<sensor_msgs::Temperature>("temperature_baro", 10);
 		static_press_pub = imu_nh.advertise<sensor_msgs::FluidPressure>("static_pressure", 10);
+		highres_static_press_pub = imu_nh.advertise<sensor_msgs::FluidPressure>("highres_static_pressure", 10);
 		diff_press_pub = imu_nh.advertise<sensor_msgs::FluidPressure>("diff_pressure", 10);
 		imu_raw_pub = imu_nh.advertise<sensor_msgs::Imu>("data_raw", 10);
 
@@ -115,6 +116,7 @@ private:
 	ros::Publisher temp_imu_pub;
 	ros::Publisher temp_baro_pub;
 	ros::Publisher static_press_pub;
+	ros::Publisher highres_static_press_pub;
 	ros::Publisher diff_press_pub;
 
 	bool has_hr_imu;
@@ -411,7 +413,7 @@ private:
 			static_pressure_msg->header = header;
 			static_pressure_msg->fluid_pressure = imu_hr.abs_pressure;
 
-			static_press_pub.publish(static_pressure_msg);
+			highres_static_press_pub.publish(static_pressure_msg);
 		}
 		// [static_pressure_available]
 
@@ -537,9 +539,6 @@ private:
 	 */
 	void handle_scaled_pressure(const mavlink::mavlink_message_t *msg, mavlink::common::msg::SCALED_PRESSURE &press)
 	{
-		if (has_hr_imu)
-			return;
-
 		auto header = m_uas->synchronized_header(frame_id, press.time_boot_ms);
 
 		auto temp_msg = boost::make_shared<sensor_msgs::Temperature>();
