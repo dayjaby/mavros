@@ -42,6 +42,7 @@ add_message_files(
   RCOut.msg
   RTCM.msg
   RadioStatus.msg
+  Serial.msg
   State.msg
   StatusText.msg
   Thrust.msg
